@@ -24,6 +24,11 @@ type EpisodeProps = {
 }
 
 export default function Episode({ episode }: EpisodeProps){
+  /* somente em fallback true no getStaticPaths
+  const router = useRouter();
+  if (router.isFallback) {
+    return <p>Carregando...</p>
+  } */
 
   return (
     <div className={styles.scroll}>
@@ -63,11 +68,37 @@ export default function Episode({ episode }: EpisodeProps){
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const { data } = await api.get('episodes', {
+    params: {
+      _limit: 2,
+      _sort: 'published_at',
+      _order: 'desc'
+    }
+  });
+
+  const paths = data.map(episode => {
+    return {
+      params: { 
+        slug: episode.id
+      }
+    }
+  });
+
   return {
-    paths: [],
+    paths,
     fallback: 'blocking'
   }
 }
+/*
+  getStaticPaths é necessário quando temos o getStaticProps e a página é dinâmica. No caso [slug].
+  paths: [{ params: { xyz: }}] -> para informar as páginas que serão geradas estáticamente no build.
+  fallback: 'string' -> se false: retorna 404 nas páginas não geradas estaticamente.
+  -> se true: roda a requisição dos dados das páginas no lado do client(browser).
+  Nesta opção é preciso inserir if (router.isFallback) para aguardar os dados e não renderizar a página.
+  -> se blocking: roda a requisição dos dados das páginas no servidor do Next (NodeJs server).
+  Nesta opção as páginas que não foram informadas no paths serão geradas no primeiro acesso 
+  e após o período de revalidação no acesso primeiro acesso seguinte ao período.
+*/
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { slug } = context.params; 

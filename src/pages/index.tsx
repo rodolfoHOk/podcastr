@@ -6,6 +6,8 @@ import { format, parseISO } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import { convertDurationToTimeString } from '../utils/convertDurationToTimeString';
 import styles from './home.module.scss';
+import { useContext } from 'react';
+import { PlayerContext } from '../contexts/PlayerContext';
 
 type Episode = {
   id: string;
@@ -19,12 +21,12 @@ type Episode = {
 }
 
 type HomeProps = {
-  // episodes: Array<Episode>; ou
   latestEpisodes: Episode[];
   allEpisodes: Episode[];
 }
 
 export default function Home({ latestEpisodes, allEpisodes}: HomeProps) {
+  const { play } = useContext(PlayerContext);
 
   return (
     <div className={styles.homepage}>
@@ -52,7 +54,7 @@ export default function Home({ latestEpisodes, allEpisodes}: HomeProps) {
                   <span>{episode.durationAsString}</span>
                 </div>
 
-                <button type="button">
+                <button type="button" onClick={() => play(episode)}>
                   <img src="/play-green.svg" alt="Tocar episódio"/>
                 </button>
               </li>
@@ -97,7 +99,7 @@ export default function Home({ latestEpisodes, allEpisodes}: HomeProps) {
                   <td style={{ width: 100 }}>{episode.publishedAt}</td>
                   <td>{episode.durationAsString}</td>
                   <td>
-                    <button type="button">
+                    <button type="button" onClick={() => play(episode)}>
                       <img src="/play-green.svg" alt="Tocar episódio"/>
                     </button>
                   </td>
@@ -112,7 +114,6 @@ export default function Home({ latestEpisodes, allEpisodes}: HomeProps) {
 }
 
 
-// SSG:
 export const getStaticProps: GetStaticProps = async () => {
   const { data } = await api.get('episodes', {
     params: {
@@ -146,17 +147,3 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 60 * 60 * 8
   };
 }
-
-// SSR:
-/*
-export const getServerSideProps: GetServerSideProps = async () => {
-  const response = await fetch('http://localhost:3333/episodes');
-  const data = await response.json();
-    
-  return { 
-    props: { 
-      episodes: data
-    } 
-  };
-}
-*/
