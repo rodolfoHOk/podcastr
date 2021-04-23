@@ -1,0 +1,10 @@
+Passos no projeto para alcançar o próximo nível.
+
+1: Tornar o site responsivo.
+
+2: PWA (progressive web apps) criar uma versão pwa. dica: next-pwa.
+
+3: Modo dark. dica: pallet omni da Rocketseat.
+
+4?: Jogar no Electron e tornar o site em aplicativo desktop.
+
