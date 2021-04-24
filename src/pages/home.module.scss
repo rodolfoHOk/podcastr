@@ -7,6 +7,18 @@
     margin-top: 3rem;
     margin-bottom: 1.5rem;
   }
+
+  @media (max-width: 1080px) {
+    padding: 0 1rem;
+    height: auto;
+    overflow-y: auto;
+    margin-bottom: 7.5rem;
+
+    h2 {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+  }
 }
 
 .latestEpisodes {
@@ -15,6 +27,12 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
+
+    @media (max-width: 1080px) {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
 
     li {
       background: var(--white);
@@ -25,6 +43,10 @@
 
       display: flex;
       align-items: center;
+
+      @media (max-width: 1080px) {
+        padding: 1rem;
+      }
 
       img {
         width: 6rem;
@@ -108,12 +130,11 @@
       }
     }
   }
-
 }
 
 .allEpisodes {
   padding-bottom: 2rem;
-  
+
   table {
     width: 100%;
     background-color: var(--white);
@@ -152,6 +173,96 @@
           text-decoration: underline;
         }
       }
+
+      button {
+        width: 2rem;
+        height: 2rem;
+        background: var(--white);
+        border: 1px solid var(--gray-100);
+        border-radius: 0.5rem;
+        font-size: 0;
+
+        transition: filter 0.2s;
+  
+        img {
+          width: 1.25rem;
+          height: 1.25rem;
+        }
+
+        &:hover {
+          filter: brightness(0.95);
+        }
+      }
+    }
+  }
+
+  .card {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: var(--white);
+    border-radius: 1rem;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--gray-100);
+
+    font-size: 0.875rem;
+
+    .cardImage {
+      min-width: 3.5rem;
+      margin-right: 1rem;
+
+      img {
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 0.5rem;
+      }
+    }
+
+    .cardInfo {
+      max-width: 80%;
+
+      a {
+        color: var(--gray-800);
+        font-family: Lexend, sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        text-decoration: none;
+        line-height: 1.4rem;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      p { 
+        margin-top: 0.2rem;
+        margin-bottom: 0.4rem;
+      }
+
+      span {
+        &:last-child {
+          margin-left: 0.5rem;
+          padding-left: 0.5rem;
+          position: relative;
+
+          &::before {
+            content: "";
+            width: 4px;
+            height: 4px;
+            border-radius: 2px;
+            background: #DDD;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+      }
+    }
+
+    .cardButton {
+      margin-left: auto;
 
       button {
         width: 2rem;

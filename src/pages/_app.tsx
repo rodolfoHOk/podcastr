@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }) {
           <Header />
           <Component {...pageProps} />
         </main>
-        <Player/>
+        <Player />
       </div>
     </PlayerContextProvider>
   );

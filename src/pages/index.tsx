@@ -8,6 +8,7 @@ import ptBR from 'date-fns/locale/pt-BR';
 import { convertDurationToTimeString } from '../utils/convertDurationToTimeString';
 import styles from './home.module.scss';
 import { usePlayer } from '../contexts/PlayerContext';
+import { useEffect, useState } from 'react';
 
 
 type Episode = {
@@ -27,6 +28,17 @@ type HomeProps = {
 }
 
 export default function Home({ latestEpisodes, allEpisodes}: HomeProps) {
+  const [ width, setWidth ] = useState(1081);
+  
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => window.removeEventListener('resize', handleWindowSizeChange);
+  },[]);
+  
   const { playList } = usePlayer();
 
   const episodeList = [...latestEpisodes, ...allEpisodes];
@@ -73,51 +85,87 @@ export default function Home({ latestEpisodes, allEpisodes}: HomeProps) {
       <section className={styles.allEpisodes}>
         <h2>Todos episódios</h2>
         
-        <table cellSpacing={0}>
-          <thead>
-            <tr>
-              <th></th>
-              <th>Podcast</th>
-              <th>Integrantes</th>
-              <th>Data</th>
-              <th>Duração</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
+        { width >= 1080 ? (
+          <table cellSpacing={0}>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Podcast</th>
+                <th>Integrantes</th>
+                <th>Data</th>
+                <th>Duração</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {allEpisodes.map((episode, index) => {
+                return (
+                  <tr key={episode.id}>
+                    <td style={{ width: 72 }}>
+                      <Image 
+                        width={120} 
+                        height={120}
+                        src={episode.thumbnail}
+                        alt={episode.title}
+                        objectFit="cover"
+                      /> 
+                    </td>
+                    <td>
+                      <Link href={`/episodes/${episode.id}`}>
+                        <a>{episode.title}</a>
+                      </Link>
+                    </td>
+                    <td>{episode.members}</td>
+                    <td style={{ width: 100 }}>{episode.publishedAt}</td>
+                    <td>{episode.durationAsString}</td>
+                    <td>
+                      <button 
+                        type="button" 
+                        onClick={() => playList(episodeList, index + latestEpisodes.length)}
+                      >
+                        <img src="/play-green.svg" alt="Tocar episódio"/>
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        ):(
+          <div>
             {allEpisodes.map((episode, index) => {
               return (
-                <tr key={episode.id}>
-                  <td style={{ width: 72 }}>
-                    <Image 
+                <div className={styles.card}>
+                  <div className={styles.cardImage}>
+                    <Image
                       width={120} 
                       height={120}
                       src={episode.thumbnail}
                       alt={episode.title}
                       objectFit="cover"
-                    /> 
-                  </td>
-                  <td>
+                    />
+                  </div>
+                  <div className={styles.cardInfo}>
                     <Link href={`/episodes/${episode.id}`}>
                       <a>{episode.title}</a>
                     </Link>
-                  </td>
-                  <td>{episode.members}</td>
-                  <td style={{ width: 100 }}>{episode.publishedAt}</td>
-                  <td>{episode.durationAsString}</td>
-                  <td>
+                    <p>{episode.members}</p>
+                    <span>{episode.publishedAt}</span>
+                    <span>{episode.durationAsString}</span>
+                  </div>
+                  <div className={styles.cardButton}>
                     <button 
                       type="button" 
                       onClick={() => playList(episodeList, index + latestEpisodes.length)}
                     >
                       <img src="/play-green.svg" alt="Tocar episódio"/>
                     </button>
-                  </td>
-                </tr>
+                  </div>
+                </div>
               );
             })}
-          </tbody>
-        </table>
+          </div>
+        )}
       </section>
     </div>
   );
