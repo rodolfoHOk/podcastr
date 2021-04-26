@@ -8,6 +8,7 @@ import { format, parseISO } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import Image from 'next/image';
 import { usePlayer } from '../../contexts/PlayerContext';
+import { useTheme } from '../../contexts/ThemeContext';
 
 
 type Episode = {
@@ -35,8 +36,10 @@ export default function Episode({ episode }: EpisodeProps){
 
   const { play } = usePlayer();
 
+  const { isDarkTheme } = useTheme();
+
   return (
-    <div className={styles.scroll}>
+    <div className={isDarkTheme ? `${styles.scroll} ${styles.dark}` : styles.scroll}>
       <Head>
         <title>{episode.title} | Podcastr</title>
       </Head>

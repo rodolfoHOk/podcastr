@@ -93,3 +93,25 @@
     }
   }
 }
+
+.dark {
+  background: #191622;
+  color: #b3acc9;
+  
+  .episode {
+    header {
+      border-bottom: 1px solid #483C67;
+
+      h1 {
+        color: #E1E1E6;
+      }
+    }
+  }
+
+  .description {
+    p {
+      color: #b3acc9;
+    }
+  }
+
+}

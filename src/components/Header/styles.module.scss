@@ -19,4 +19,41 @@
     margin-left: auto;
     text-transform: capitalize;
   }
+
+  button {
+    margin-left: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: var(--white);
+    border: 1px solid var(--gray-100);
+    border-radius: 0.675rem;
+
+    padding-top: 3px;
+
+    transition: filter 0.2s;
+
+    &:hover {
+      filter: brightness(0.95);
+    }
+  }
+}
+
+.dark {
+  background: #070707;
+  border-bottom: 1px solid #483C67;
+  color: #E1E1E6;
+
+  p {
+    border-left: 1px solid #483C67;
+  }
+
+  button {
+    background: #41414D	;
+    border: 1px solid #483C67;
+    color: #E1E1E6;
+
+    &:hover {
+      filter: brightness(0.8);
+    }
+  }
 }

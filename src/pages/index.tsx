@@ -9,6 +9,7 @@ import { convertDurationToTimeString } from '../utils/convertDurationToTimeStrin
 import styles from './home.module.scss';
 import { usePlayer } from '../contexts/PlayerContext';
 import { useEffect, useState } from 'react';
+import { useTheme } from '../contexts/ThemeContext';
 
 
 type Episode = {
@@ -28,7 +29,7 @@ type HomeProps = {
 }
 
 export default function Home({ latestEpisodes, allEpisodes}: HomeProps) {
-  const [ width, setWidth ] = useState(1081);
+  const [ width, setWidth ] = useState(1200);
   
   function handleWindowSizeChange() {
     setWidth(window.innerWidth);
@@ -41,10 +42,12 @@ export default function Home({ latestEpisodes, allEpisodes}: HomeProps) {
   
   const { playList } = usePlayer();
 
+  const { isDarkTheme } = useTheme();
+
   const episodeList = [...latestEpisodes, ...allEpisodes];
   
   return (
-    <div className={styles.homepage}>
+    <div className={isDarkTheme ? `${styles.homepage} ${styles.dark}` : styles.homepage}>
       <Head>
         <title>Home | Podcastr</title>
       </Head>

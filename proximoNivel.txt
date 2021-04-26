@@ -2,36 +2,8 @@ Passos no projeto para alcançar o próximo nível.
 
 1: Tornar o site responsivo. (OK)
 
+3: Modo dark. (OK)
+
 2: PWA (progressive web apps) criar uma versão pwa. dica: next-pwa.
-
-3: Modo dark. dica: pallet omni da Rocketseat.
-  idéias:
-    1) criar classes de css no css de cada página:
-     .theme-dark: { variáreis com valores light }
-     .theme-light: { mesmas variáveis com valores dark }
-    2) criar um botão de modo dark no header.
-    3) para aplicar a classe escolhida:
-      const [ themeName, setThemeName ] = useState('theme-light');
-      function setTheme(themeName){
-        setThemeName(themeName);
-        localStorage.setItem('theme', themeName);
-      }
-      return (
-        <div className={themeName}> // elemento principal da página.
-          ...
-        </div>
-      );
-    4) para carregar a classe escolhida:
-      function getTheme() {
-        if (localStorage.getItem('theme')) {
-          if (localStorage.getItem('theme') === 'theme-dark') {
-            setTheme('theme-dark');
-          } else if (localStorage.getItem('theme') === 'theme-light') {
-            setTheme('theme-light')
-          }
-        } else {
-          setTheme('theme-light')
-        }
-      }
-
+  
 opcional: Jogar no Electron (electron.js) e tornar o site em aplicativo desktop.
