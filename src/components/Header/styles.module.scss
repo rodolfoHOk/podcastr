@@ -9,10 +9,25 @@
 
   border-bottom: 1px solid var(--gray-100);
 
+  @media (max-width: 720px) {
+    height: 5.5rem;
+    padding: 1rem 1rem;
+
+    img {
+      height: 2.25rem;
+      width: auto;
+    }
+  }
+
   p {
     margin-left: 2rem;
     padding: 0.25rem 0 0.25rem 2rem;
     border-left: 1px solid var(--gray-100);
+
+    @media (max-width: 720px) {
+      margin-left: 0.75rem;
+      padding: 0.25rem 0 0.25rem 0.75rem;
+    }
   }
 
   span {
@@ -22,6 +37,7 @@
 
   button {
     margin-left: 1rem;
+    min-width: 2.5rem;
     width: 2.5rem;
     height: 2.5rem;
     background: var(--white);
@@ -31,6 +47,10 @@
     padding-top: 3px;
 
     transition: filter 0.2s;
+
+    @media (max-width: 720px) {
+      margin-left: 0.5rem;
+    }
 
     &:hover {
       filter: brightness(0.95);
