@@ -29,11 +29,11 @@
 
 <img src="https://raw.githubusercontent.com/rodolfoHOk/portfolio-img/main/images/podcastr-1.png" alt="PodCastr Img1" width="450"/>
 
-<img src="https://raw.githubusercontent.com/rodolfoHOk/portfolio-img/main/images/podcastr-2.png" alt="PodCastr Img1" width="450"/>
+<img src="https://raw.githubusercontent.com/rodolfoHOk/portfolio-img/main/images/podcastr-2.png" alt="PodCastr Img2" width="450"/>
 
-<img src="https://raw.githubusercontent.com/rodolfoHOk/portfolio-img/main/images/podcastr-4.png" alt="PodCastr Img1" width="450"/>
+<img src="https://raw.githubusercontent.com/rodolfoHOk/portfolio-img/main/images/podcastr-4.png" alt="PodCastr Img4" width="450"/>
 
-<img src="https://raw.githubusercontent.com/rodolfoHOk/portfolio-img/main/images/podcastr-5.png" alt="PodCastr Img1" width="450"/>
+<img src="https://raw.githubusercontent.com/rodolfoHOk/portfolio-img/main/images/podcastr-5.png" alt="PodCastr Img5" width="450"/>
 
 ## 🔥 Deployed URL 🔗
 
